@@ -1,0 +1,16 @@
+/home/avaya/Desktop/BankApplication/bin/Debug/net5.0/BankApplication
+/home/avaya/Desktop/BankApplication/bin/Debug/net5.0/BankApplication.deps.json
+/home/avaya/Desktop/BankApplication/bin/Debug/net5.0/BankApplication.runtimeconfig.json
+/home/avaya/Desktop/BankApplication/bin/Debug/net5.0/BankApplication.runtimeconfig.dev.json
+/home/avaya/Desktop/BankApplication/bin/Debug/net5.0/BankApplication.dll
+/home/avaya/Desktop/BankApplication/bin/Debug/net5.0/ref/BankApplication.dll
+/home/avaya/Desktop/BankApplication/bin/Debug/net5.0/BankApplication.pdb
+/home/avaya/Desktop/BankApplication/obj/Debug/net5.0/BankApplication.csproj.AssemblyReference.cache
+/home/avaya/Desktop/BankApplication/obj/Debug/net5.0/BankApplication.GeneratedMSBuildEditorConfig.editorconfig
+/home/avaya/Desktop/BankApplication/obj/Debug/net5.0/BankApplication.AssemblyInfoInputs.cache
+/home/avaya/Desktop/BankApplication/obj/Debug/net5.0/BankApplication.AssemblyInfo.cs
+/home/avaya/Desktop/BankApplication/obj/Debug/net5.0/BankApplication.csproj.CoreCompileInputs.cache
+/home/avaya/Desktop/BankApplication/obj/Debug/net5.0/BankApplication.dll
+/home/avaya/Desktop/BankApplication/obj/Debug/net5.0/ref/BankApplication.dll
+/home/avaya/Desktop/BankApplication/obj/Debug/net5.0/BankApplication.pdb
+/home/avaya/Desktop/BankApplication/obj/Debug/net5.0/BankApplication.genruntimeconfig.cache

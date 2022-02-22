@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/home/avaya/.dotnet/store/|arch|/|tfm|",
+      "/home/avaya/.nuget/packages"
+    ]
+  }
+}
