@@ -7,5 +7,7 @@ namespace BankApplication
         void Deposit(decimal amountToDeposit);
         void Withdraw(decimal amountToWithdraw);
 
+        void WithdrawCorp(decimal amountToWithdraw);
+
     }
 }

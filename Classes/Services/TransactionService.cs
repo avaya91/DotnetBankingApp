@@ -1,23 +1,54 @@
+using System;
 namespace BankApplication
 {
     public class TransactionService : ITransactionService
     {
-        public void DepositToAccount(IAccount account, decimal amountToDeposit)
+        private IAccount Account {get; set;}
+        private IAccount FromAccount {get; set;}
+        private IAccount ToAccount {get; set;}
+
+        //constructor based on passed parameter
+        public TransactionService(IAccount account)
         {
-            account.Deposit(amountToDeposit);
+            this.Account = account;
+        }
+        public TransactionService(IAccount fromAccount, IAccount toAccount)
+        {
+            this.FromAccount = fromAccount;
+            this.ToAccount = toAccount;
+        }
+        public void DepositToAccount(decimal amountToDeposit)
+        {
+            Account.Deposit(amountToDeposit);
         }
 
-        public void WithdrawAmount(IAccount account, decimal amountToWithdraw)
+        public void WithdrawAmount(decimal amountToWithdraw)
         {
-            account.Withdraw(amountToWithdraw);
+            if (amountToWithdraw <= Account.Balance)
+            {
+                Account.Withdraw(amountToWithdraw);
+            }
+            else
+            {
+                Console.WriteLine("Not enough balance in account to withdraw");
+            }
+                
         }
 
-        public void TransferAount(IAccount fromAccount, IAccount toAccount, decimal amountToTransfer)
+        public void TransferAmount(decimal amountToTransfer)
         {
             //what if from account donm't have enough balance or hit withdrawal limit
             //only add to ToAccount if FromAccount withdraw compltes
-            fromAccount.Withdraw(amountToTransfer);
-            toAccount.Deposit(amountToTransfer);
+            if (amountToTransfer <= FromAccount.Balance)
+            {
+                FromAccount.Withdraw(amountToTransfer);
+                ToAccount.Deposit(amountToTransfer);
+            }
+            else
+            {
+                Console.WriteLine("Not enough balance in account to transfer");
+            }
+            
         }
     }
 }

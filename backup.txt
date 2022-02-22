@@ -1,0 +1,31 @@
+           Console.WriteLine("Testing checking account depoisit");
+            Console.WriteLine($"Current Balance: {individualCheckingAccount.Balance}");
+
+            //Indivisual deposit
+            transactionService.DepositToAccount(individualCheckingAccount, 500);
+            Console.WriteLine($"Current Balance: {individualCheckingAccount.Balance}");
+
+            //Indivisual withdraw
+            transactionService.WithdrawAmount(individualCheckingAccount, 400);
+            Console.WriteLine($"Current Balance after Withdrawal: {individualCheckingAccount.Balance}");
+
+            //transfer from corporate to indivisual
+            transactionService.TransferAount(coorporateCheckingAccount, individualCheckingAccount, 400);
+            Console.WriteLine($"Current Balance after transfer: {individualCheckingAccount.Balance}");
+
+
+            //Test Coorporate account
+            Console.WriteLine("Testing corporate account deposit");
+            Console.WriteLine($"Current Balance: {coorporateCheckingAccount.Balance}");
+
+            // Coorporate deposit
+            transactionService.DepositToAccount(coorporateCheckingAccount, 500);
+            Console.WriteLine($"Current Balance: {coorporateCheckingAccount.Balance}");
+
+            //Coorporate withdraw
+            transactionService.WithdrawAmount(coorporateCheckingAccount, 200);
+            Console.WriteLine($"Current Balance after Withdrawal: {coorporateCheckingAccount.Balance}");
+
+            //Coorporate indivisaul to coorporate 
+            transactionService.TransferAount(individualCheckingAccount, coorporateCheckingAccount, 20);
+            Console.WriteLine($"Current Balance after transfer: {coorporateCheckingAccount.Balance}");

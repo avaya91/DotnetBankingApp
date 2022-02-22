@@ -1,7 +1,6 @@
-
 namespace BankApplication
 {
-    public class CheckingAccount : ICheckingAccount
+    public class CorporateInvestmentAccount : IAccount
     {
         public Owner AccountOwner {get; set;}
         public decimal Balance {get; set;}
@@ -12,6 +11,11 @@ namespace BankApplication
         }
 
         public void Withdraw(decimal amountToWithdraw)
+        {
+            this.Balance -= amountToWithdraw;
+        }
+
+        public void WithdrawCorp(decimal amountToWithdraw)
         {
             this.Balance -= amountToWithdraw;
         }

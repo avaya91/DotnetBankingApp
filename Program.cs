@@ -1,57 +1,43 @@
 ﻿using System;
-
+using BankApplication.Classes.Test_Classes;
+using BankApplication.Classes.Bank_Objects;
 namespace BankApplication
 {
     public class Program
     {
         static void Main(string[] args)
         {
-            ITransactionService transactionService = new TransactionService();
+            //Create in memory bank object with individual and coorporate accounts
+            Bank testBank = BankRepository.CreateBank();
 
-            Bank bank = new Bank() { Name = "Chase Bank" };
+            //Create accounts
+            AccountModel individualAccountModel = BankRepository.GetNewIndividualAcount();
+            AccountModel coorporateAccountModel = BankRepository.GetNewCoorporateAccount();
 
-            //Create individual account (chekcing, investment)
-            Owner individualOwner = new Owner() { Name = "John Doe", Address = "Test St, Test City, Test State, 95067" };
-            CheckingAccount individualCheckingAccount = new CheckingAccount(){ AccountOwner = individualOwner, Balance = 1000 };
-            IndividualInvestmentAccount individualInvestmentAccount = new IndividualInvestmentAccount() { AccountOwner = individualOwner, Balance = 10000 };
+            testBank.Accounts.Add(individualAccountModel.CheckingAccount);
+            testBank.Accounts.Add(individualAccountModel.InvestmentAccount);
+            testBank.Accounts.Add(coorporateAccountModel.CheckingAccount);
+            testBank.Accounts.Add(coorporateAccountModel.InvestmentAccount);
+
+            Console.WriteLine($"Bank Name: {testBank.Name}");
+            Console.WriteLine($"Number of accounts in Bank: {testBank.Accounts.Count}");
+
+            //Test individual account
+            TestDepositAndWithdrawal testIndividualAccount = new TestDepositAndWithdrawal(individualAccountModel.CheckingAccount);
+            testIndividualAccount.Deposit(500);
+            testIndividualAccount.Withdrawal(600);
             
-            //Coorporate account
-            Owner coorporateOwner = new Owner() { Name = "Apple. Inc", Address = "123 Silicon Valley, San Fransisco, California, 90056" };
-            CheckingAccount coorporateCheckingAccount = new CheckingAccount(){ AccountOwner = coorporateOwner, Balance = 10000 };
-            CorporateInvestmentAccount corporateInvestmentAccount = new CorporateInvestmentAccount() { AccountOwner = coorporateOwner, Balance = 100000};
-
-            //Test Individual Account functionality
-            Console.WriteLine("Testing checking account depoisit");
-            Console.WriteLine($"Current Balance: {individualCheckingAccount.Balance}");
-
-            //Indivisual deposit
-            transactionService.DepositToAccount(individualCheckingAccount, 500);
-            Console.WriteLine($"Current Balance: {individualCheckingAccount.Balance}");
-
-            //Indivisual withdraw
-            transactionService.WithdrawAmount(individualCheckingAccount, 400);
-            Console.WriteLine($"Current Balance after Withdrawal: {individualCheckingAccount.Balance}");
-
-            //transfer from corporate to indivisual
-            transactionService.TransferAount(coorporateCheckingAccount, individualCheckingAccount, 400);
-            Console.WriteLine($"Current Balance after transfer: {individualCheckingAccount.Balance}");
+            TestTransfer testTransferFromCheckingToInvestment = new TestTransfer(individualAccountModel.CheckingAccount, individualAccountModel.InvestmentAccount);
+            testTransferFromCheckingToInvestment.TransferBetweenAccounts(500);
 
 
             //Test Coorporate account
-            Console.WriteLine("Testing corporate account deposit");
-            Console.WriteLine($"Current Balance: {coorporateCheckingAccount.Balance}");
-
-            // Coorporate deposit
-            transactionService.DepositToAccount(coorporateCheckingAccount, 500);
-            Console.WriteLine($"Current Balance: {coorporateCheckingAccount.Balance}");
-
-            //Coorporate withdraw
-            transactionService.WithdrawAmount(coorporateCheckingAccount, 200);
-            Console.WriteLine($"Current Balance after Withdrawal: {coorporateCheckingAccount.Balance}");
-
-            //Coorporate indivisaul to coorporate 
-            transactionService.TransferAount(individualCheckingAccount, coorporateCheckingAccount, 20);
-            Console.WriteLine($"Current Balance after transfer: {coorporateCheckingAccount.Balance}");
+            TestDepositAndWithdrawal testCorporateAccount = new TestDepositAndWithdrawal(coorporateAccountModel.CheckingAccount);
+            testCorporateAccount.Deposit(200);
+            testCorporateAccount.WithdrawalCorp(500);
+            
+            TestTransfer testTransferFromInvestmentToChecking = new TestTransfer(individualAccountModel.InvestmentAccount, individualAccountModel.CheckingAccount);
+            testTransferFromInvestmentToChecking.TransferBetweenAccounts(100);
         }
     }
 }

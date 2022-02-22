@@ -1,10 +1,10 @@
+
 namespace BankApplication
 {
-    public class IndividualInvestmentAccount : IAccount
+    public class CheckingAccount : IAccount
     {
         public Owner AccountOwner {get; set;}
         public decimal Balance {get; set;}
-        public decimal WithdrawalLimit{get => WithdrawalLimit; set => WithdrawalLimit = 500;}
 
         public void Deposit(decimal amountToDeposit)
         {
@@ -13,9 +13,11 @@ namespace BankApplication
 
         public void Withdraw(decimal amountToWithdraw)
         {
-            if (amountToWithdraw <= WithdrawalLimit){
-                this.Balance -= amountToWithdraw;
-            }
+            this.Balance -= amountToWithdraw;
+        }
+
+        public void WithdrawCorp(decimal amountToWithdraw)
+        {
         }
     }
 }
